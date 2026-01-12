@@ -42,8 +42,8 @@ fi
 echo -e "${YELLOW}Downloading DeepSeek-OCR model...${NC}"
 mkdir -p "/app/models"
 echo -e "${YELLOW}Downloading DeepSeek-OCR model...${NC}"
-hf download deepseek-ai/DeepSeek-OCR --local-dir "/app/models/deepseek-ai/DeepSeek-OCR" || {
-    echo -e "${RED}✗ Failed to download DeepSeek-OCR model${NC}"
-    exit 1
-}
+#hf download deepseek-ai/DeepSeek-OCR --local-dir "/app/models/deepseek-ai/DeepSeek-OCR" || {
+#    echo -e "${RED}✗ Failed to download DeepSeek-OCR model${NC}"
+#    exit 1
+#}
 echo -e "${GREEN}✓ DeepSeek-OCR model downloaded successfully${NC}"

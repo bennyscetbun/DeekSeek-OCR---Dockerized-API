@@ -1,3 +1,5 @@
 /examples
 /models
 /DeepSeek-OCR
+.venv
+__pycache__

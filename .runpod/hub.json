@@ -1,0 +1,58 @@
+{
+    "title": "an example serverless app",
+    "description": "An example description",
+    "type": "serverless",
+    "category": "image",
+    "config": {
+      "runsOn": "GPU",
+      "containerDiskInGb": 30,
+      "allowedCudaVersions": [
+        "12.8", "12.7", "12.6"
+      ],
+      "presets": [
+        {
+          "name": "default",
+          "defaults": {
+            "CUDA_VISIBLE_DEVICES": "0",
+            "MAX_CONCURRENCY": "5",
+            "GPU_MEMORY_UTILIZATION": "0.85"
+          }
+        }
+      ],
+      "env": [
+        {
+          "key": "MODEL_PATH",
+          "value": "/app/models/deepseek-ai/DeepSeek-OCR"
+        },
+        {
+          "key": "CUDA_VISIBLE_DEVICES",
+          "input": {
+            "name": "CUDA_VISIBLE_DEVICES",
+            "type": "number",
+            "description": "`CUDA visible devices",
+            "default": "0"
+          }
+        },
+        {
+          "key": "MAX_CONCURRENCY",
+          "input": {
+            "name": "MAX_CONCURRENCY",
+            "type": "number",
+            "description": "Max concurrency",
+            "default": "5"
+          }
+        },
+        {
+          "key": "GPU_MEMORY_UTILIZATION",
+          "input": {
+            "name": "GPU_MEMORY_UTILIZATION",
+            "type": "number",
+            "description": "GPU memory utilization",
+            "default": "0.85",
+            "min": "0.1",
+            "max": "1.0"
+          }
+        }
+      ]
+    }
+  }

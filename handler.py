@@ -11,9 +11,9 @@ initialize_model()
 def handler(event):
     try:
         # Validate the input against the schema
-        input: list = event["input"]
+        inputs: list = event["input"]["inputs"]
         results: List[OCRResponse] = []
-        for item in input:
+        for item in inputs:
             file_type = item["file_type"]
             file_data = item.get("file_data", None)
             file_url = item.get("file_url", None)

@@ -111,37 +111,8 @@ This script performs the same checks and setup as the Linux/macOS version.
 
 If you prefer manual setup or the automated scripts fail, follow these steps:
 
-#### Step 1: Download Model and Source Code
 
-**CRITICAL**: This step must be completed BEFORE building Docker!
-
-```bash
-# Run the setup script
-./setup_local.sh
-
-# This will:
-# - Install huggingface-cli if needed
-# - Download the DeepSeek-OCR model (~15GB) to ./models/
-# - Clone DeepSeek-OCR source code to ./DeepSeek-OCR/
-# - Verify all required files are present
-```
-
-Or manually:
-
-```bash
-# Install Hugging Face CLI
-pip install huggingface_hub
-
-# Download model to local directory
-huggingface-cli download deepseek-ai/DeepSeek-OCR \
-  --local-dir ./models/deepseek-ai/DeepSeek-OCR \
-  --local-dir-use-symlinks False
-
-# Clone DeepSeek-OCR source
-git clone https://github.com/deepseek-ai/DeepSeek-OCR.git
-```
-
-#### Step 2: Build the Docker Container
+#### Step 1: Build the Docker Container
 
 ```bash
 # Build the Docker image
@@ -150,7 +121,7 @@ docker compose build
 
 **Note**: Use `docker compose` (Docker CLI plugin v2), NOT the deprecated `docker-compose` standalone tool.
 
-#### Step 3: Start the Service
+#### Step 2: Start the Service
 
 ```bash
 # Start the service in detached mode
@@ -162,7 +133,7 @@ docker compose logs -f deepseek-ocr
 
 The model will take 1-2 minutes to load on first startup.
 
-#### Step 4: Verify Installation
+#### Step 3: Verify Installation
 
 ```bash
 # Health check
@@ -681,16 +652,13 @@ HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_na
 # STOP the container first
 docker compose down
 
-# Run setup to download model and source code
-./setup_local.sh
-
 # OR use the automated build script
 ./build_and_run.sh  # Linux/macOS
 build.bat            # Windows
 
 # OR manually download the model
 pip install huggingface_hub
-huggingface-cli download deepseek-ai/DeepSeek-OCR \
+hf download deepseek-ai/DeepSeek-OCR \
   --local-dir ./models/deepseek-ai/DeepSeek-OCR \
   --local-dir-use-symlinks False
 

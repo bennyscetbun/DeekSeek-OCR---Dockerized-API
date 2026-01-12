@@ -39,42 +39,7 @@ if %ERRORLEVEL% NEQ 0 (
 echo ✓ NVIDIA GPU found
 echo.
 
-REM Step 2: Check if setup has been run
-echo Checking setup status...
-set SETUP_NEEDED=0
-
-REM Check for DeepSeek-OCR source
-if not exist "DeepSeek-OCR\DeepSeek-OCR-master\DeepSeek-OCR-vllm" (
-    echo ❌ DeepSeek-OCR source code not found
-    set SETUP_NEEDED=1
-) else (
-    echo ✓ DeepSeek-OCR source code found
-)
-
-REM Check for model files
-if not exist "models\deepseek-ai\DeepSeek-OCR\config.json" (
-    echo ❌ Model files not found
-    set SETUP_NEEDED=1
-) else (
-    echo ✓ Model files found
-)
-
-if %SETUP_NEEDED% EQU 1 (
-    echo.
-    echo =========================================
-    echo Setup required before building
-    echo =========================================
-    echo.
-    echo Please run setup_local.sh first or manually:
-    echo   1. Install huggingface-cli: pip install huggingface-hub
-    echo   2. Clone DeepSeek-OCR: git clone https://github.com/deepseek-ai/DeepSeek-OCR.git
-    echo   3. Download model: huggingface-cli download deepseek-ai/DeepSeek-OCR --local-dir models\deepseek-ai\DeepSeek-OCR
-    echo.
-    pause
-    exit /b 1
-)
-
-REM Step 3: Build Docker image
+REM Step 2: Build Docker image
 echo.
 echo =========================================
 echo Building Docker image...
@@ -107,7 +72,7 @@ echo    - OCR-specific prompt support: '<image>\nFree OCR.'
 echo    - Test scripts: test_ocr_prompt.py, quick_test_ocr.py
 echo.
 
-REM Step 4: Ask if user wants to start the service
+REM Step 3: Ask if user wants to start the service
 set /p START_SERVICE="Do you want to start the service now? (y/n): "
 
 if /i "%START_SERVICE%"=="y" (

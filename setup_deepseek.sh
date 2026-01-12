@@ -38,11 +38,12 @@ else
     rm -rf /tmp/DeepSeek-OCR
 fi
 
-# Note: Model files should be downloaded to ./models/ directory on the host
-# BEFORE running docker build, using the setup_local.sh script.
-# The model directory will be mounted as a volume at runtime.
-
-echo -e "${GREEN}=========================================${NC}"
-echo -e "${GREEN}DeepSeek-OCR Source Setup Complete!${NC}"
-echo -e "${GREEN}=========================================${NC}"
-echo -e "${YELLOW}Note: Model must be in ./models/ directory on host${NC}"
+# Download model
+echo -e "${YELLOW}Downloading DeepSeek-OCR model...${NC}"
+mkdir -p "/app/models"
+echo -e "${YELLOW}Downloading DeepSeek-OCR model...${NC}"
+hf download deepseek-ai/DeepSeek-OCR --local-dir "/app/models/deepseek-ai/DeepSeek-OCR" || {
+    echo -e "${RED}✗ Failed to download DeepSeek-OCR model${NC}"
+    exit 1
+}
+echo -e "${GREEN}✓ DeepSeek-OCR model downloaded successfully${NC}"

@@ -26,7 +26,7 @@ Create a directory for model weights and download the DeepSeek-OCR model:
 mkdir -p models
 # Option 1: Using Hugging Face CLI
 pip install huggingface_hub
-huggingface-cli download deepseek-ai/DeepSeek-OCR --local-dir models/deepseek-ai/DeepSeek-OCR
+hf download deepseek-ai/DeepSeek-OCR --local-dir models/deepseek-ai/DeepSeek-OCR
 
 # Option 2: Using git
 git clone https://huggingface.co/deepseek-ai/DeepSeek-OCR models/deepseek-ai/DeepSeek-OCR

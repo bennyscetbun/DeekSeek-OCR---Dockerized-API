@@ -5,7 +5,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./models:/app/models  # Mount directory for model weights
+    #  - ./models:/app/models  # Mount directory for model weights
       - ./outputs:/app/outputs  # Mount directory for output files
     environment:
       - CUDA_VISIBLE_DEVICES=0

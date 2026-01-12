@@ -37,53 +37,6 @@ if ! command -v nvidia-smi &> /dev/null; then
 fi
 echo -e "${GREEN}✓ NVIDIA GPU found${NC}"
 
-# Step 2: Check if setup has been run
-echo ""
-echo -e "${YELLOW}Checking setup status...${NC}"
-
-SETUP_NEEDED=0
-
-# Check for DeepSeek-OCR source
-if [ ! -d "DeepSeek-OCR/DeepSeek-OCR-master/DeepSeek-OCR-vllm" ]; then
-    echo -e "${RED}✗ DeepSeek-OCR source code not found${NC}"
-    SETUP_NEEDED=1
-else
-    echo -e "${GREEN}✓ DeepSeek-OCR source code found${NC}"
-fi
-
-# Check for model files
-if [ ! -f "models/deepseek-ai/DeepSeek-OCR/config.json" ]; then
-    echo -e "${RED}✗ Model files not found${NC}"
-    SETUP_NEEDED=1
-else
-    echo -e "${GREEN}✓ Model files found${NC}"
-fi
-
-# Run setup if needed
-if [ $SETUP_NEEDED -eq 1 ]; then
-    echo ""
-    echo -e "${YELLOW}=========================================${NC}"
-    echo -e "${YELLOW}Setup required before building${NC}"
-    echo -e "${YELLOW}=========================================${NC}"
-    echo ""
-
-    # Check if setup_local.sh exists
-    if [ ! -f "setup_local.sh" ]; then
-        echo -e "${RED}✗ setup_local.sh not found${NC}"
-        exit 1
-    fi
-
-    # Make setup script executable
-    chmod +x setup_local.sh
-
-    echo -e "${BLUE}Running setup_local.sh...${NC}"
-    ./setup_local.sh || {
-        echo -e "${RED}✗ Setup failed${NC}"
-        exit 1
-    }
-    echo ""
-fi
-
 # Step 3: Build Docker image
 echo -e "${YELLOW}=========================================${NC}"
 echo -e "${YELLOW}Building Docker image...${NC}"

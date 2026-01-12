@@ -96,18 +96,14 @@ build.bat
 
 These scripts will:
 1. Check prerequisites (Docker, GPU, etc.)
-2. Run `setup_local.sh` if needed (downloads model + clones source)
-3. Build the Docker image
-4. Optionally start the service
+2. Build the Docker image
+3. Optionally start the service
 
 ### Manual Setup (If needed)
 
 If the automated scripts don't work, follow these steps:
 
 ```bash
-# Step 1: Run setup script to download model and clone source
-./setup_local.sh
-
 # Step 2: Build Docker image (use 'docker compose' not 'docker-compose')
 docker compose build
 
@@ -261,15 +257,6 @@ if '<｜end▁of▁sentence｜>' in result:
 ```bash
 # STOP the container first
 docker compose down
-
-# Run setup to download model and source code
-./setup_local.sh  # Linux/macOS
-# OR manually:
-pip install huggingface-hub
-huggingface-cli download deepseek-ai/DeepSeek-OCR --local-dir ./models/deepseek-ai/DeepSeek-OCR
-
-# Verify files exist locally
-ls -la ./models/deepseek-ai/DeepSeek-OCR/
 
 # Rebuild and start
 docker compose build

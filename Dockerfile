@@ -9,9 +9,9 @@ USER root
 # Set working directory
 WORKDIR /app
 
-# Install git and huggingface-cli
+# Install git and hf
 RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
-RUN pip install --no-cache-dir huggingface-hub
+RUN pip install --no-cache-dir huggingface-hub -U
 
 # Copy setup script
 COPY setup_deepseek.sh /app/setup_deepseek.sh
@@ -45,7 +45,7 @@ RUN pip install --no-cache-dir \
     numpy \
     tqdm \
     requests \
-    fastapi==0.104.1 \
+    fastapi==0.115.0 \
     uvicorn[standard]==0.24.0 \
     python-multipart==0.0.6
 
@@ -53,7 +53,7 @@ RUN pip install --no-cache-dir \
 RUN pip install --no-cache-dir flash-attn==2.7.3 --no-build-isolation || echo "flash-attn may already be installed"
 
 # Install compatible tokenizers version
-RUN pip install --no-cache-dir tokenizers==0.13.3 || echo "Using existing tokenizers version"
+RUN pip install --no-cache-dir tokenizers
 
 # Add the DeepSeek-OCR directory to PYTHONPATH
 ENV PYTHONPATH="/app/DeepSeek-OCR-vllm:${PYTHONPATH}"

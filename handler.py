@@ -46,7 +46,7 @@ def handler(event):
                 results.append(process_image_endpoint(data_bytes, prompt))
             else:
                 results.append(OCRResponse(success=False, error="Invalid request type, should be one of: pdf, image"))
-            return {"output": [result.to_dict() for result in results]}
+        return {"output": [result.to_dict() for result in results]}
     except Exception as e:
         return {"error": str(e)}
     
